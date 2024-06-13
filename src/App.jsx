@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import AppRoutes from "../routes/AppRoutes";
+import AppRoutes from "./routes/AppRoutes";
 
-import Navigation from "../components/Navigation/Navigation";
+import Navigation from "./components/Navigation/Navigation";
 
 const App = () => {
   return (
