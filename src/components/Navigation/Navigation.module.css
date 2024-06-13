@@ -1,0 +1,32 @@
+.header {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+
+a {
+  color: black;
+}
+
+.navContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .navContainer {
+    padding: 16px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .navContainer {
+    padding: 16px 64px;
+  }
+}
