@@ -34,6 +34,7 @@ export const catalogSlice = createSlice({
   },
 });
 
+// Selectors
 export const selectCatalogItems = (state) => state.catalog.catalog.items;
 export const selectIsLoading = (state) => state.catalog.catalog.isLoading;
 export const selectHasError = (state) => state.catalog.catalog.hasError;

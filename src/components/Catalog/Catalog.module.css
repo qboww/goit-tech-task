@@ -12,6 +12,31 @@
   margin: 50px 0px 100px 0px;
 }
 
+.loadMore {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #3470ff;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loadMore:hover {
+  color: #0b44cd;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
 @media screen and (min-width: 768px) {
 }
 
