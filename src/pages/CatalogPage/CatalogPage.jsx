@@ -1,4 +1,4 @@
-// src/pages/Catalog/Catalog.js
+// src/pages/CatalogPage/CatalogPage.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdvert } from "../../redux/catalog/catalogOps";
@@ -10,6 +10,8 @@ import {
 import Filters from "../../components/Filters/Filters";
 import Catalog from "../../components/Catalog/Catalog";
 import Loader from "../../components/Loader/Loader";
+
+import css from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -26,11 +28,9 @@ const CatalogPage = () => {
 
   useEffect(() => {
     setFilteredItems(items);
-    // Extract unique car brands
     const uniqueBrands = [...new Set(items.map((car) => car.make))];
     setBrands(uniqueBrands);
 
-    // Extract, clean, and sort unique prices as integers
     const uniquePrices = [
       ...new Set(
         items.map((car) => parseInt(car.rentalPrice.replace(/\D/g, ""), 10))
@@ -79,6 +79,9 @@ const CatalogPage = () => {
     <div className="container">
       <Filters onSearch={handleSearch} brands={brands} prices={prices} />
       <Catalog items={filteredItems} />
+      <div className={css.btnContainer}>
+        <button className={css.loadMore}>Load more</button>
+      </div>
     </div>
   );
 };
