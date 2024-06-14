@@ -1,0 +1,100 @@
+.image {
+  border-radius: 14px;
+  width: 100%;
+  height: 268px;
+  object-fit: cover;
+}
+
+.imageContainer {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.card {
+  max-width: 274px;
+  width: 100%;
+}
+
+.dataContainer {
+  margin-bottom: 28px;
+}
+
+.icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1000;
+
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 12px;
+  border: none;
+  padding: 12px 99px;
+  width: 100%;
+  height: 44px;
+
+  background: #3470ff;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 143%;
+  color: #fff;
+  cursor: pointer;
+
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  background: #0b44cd;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tags {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: rgba(18, 20, 23, 0.5);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+
+.tags p {
+  height: 16px;
+  padding-right: 6px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tags p:not(:last-child) {
+  border-right: 1px solid #1214171a;
+}
+
+.namePrice {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.model {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #3470ff;
+}
+

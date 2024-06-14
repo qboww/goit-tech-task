@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "Manrope";
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Manrope-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/Manrope-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/Manrope-SemiBold.ttf") format("truetype");
+}
+
 :root {
   --font-family: "Manrope", sans-serif;
   --second-family: "Inter", sans-serif;
