@@ -5,7 +5,6 @@ import {
   selectCatalogItems,
   selectIsLoading,
   selectHasError,
-  selectTotalItems,
 } from "../../redux/catalog/catalogSlice";
 import Filters from "../../components/Filters/Filters";
 import Catalog from "../../components/Catalog/Catalog";
@@ -17,19 +16,19 @@ const CatalogPage = () => {
   const items = useSelector(selectCatalogItems);
   const isLoading = useSelector(selectIsLoading);
   const hasError = useSelector(selectHasError);
-  const totalItems = useSelector(selectTotalItems);
   const [filteredItems, setFilteredItems] = useState([]);
+  const [allFilteredItems, setAllFilteredItems] = useState([]);
   const [brands, setBrands] = useState([]);
   const [prices, setPrices] = useState([]);
   const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
-    dispatch(fetchAdvert({ page }));
-  }, [dispatch, page]);
+    dispatch(fetchAdvert());
+  }, [dispatch]);
 
   useEffect(() => {
     if (items.length) {
-      setFilteredItems(items);
       const uniqueBrands = [...new Set(items.map((car) => car.make))];
       setBrands(uniqueBrands);
 
@@ -39,10 +38,16 @@ const CatalogPage = () => {
         ),
       ].sort((a, b) => a - b);
       setPrices(uniquePrices);
+
+      applyFilters(filters, items);
     }
   }, [items]);
 
-  const handleSearch = (filters) => {
+  useEffect(() => {
+    applyFilters(filters, items);
+  }, [filters, items, page]);
+
+  const applyFilters = (filters, items) => {
     let filtered = items;
     if (filters.brand) {
       filtered = filtered.filter((car) =>
@@ -67,14 +72,20 @@ const CatalogPage = () => {
       filtered = filtered.filter((car) => car.mileage <= maxMileage);
     }
 
-    setFilteredItems(filtered);
+    setAllFilteredItems(filtered);
+    setFilteredItems(filtered.slice(0, page * 12));
+  };
+
+  const handleSearch = (filters) => {
+    setFilters(filters);
+    setPage(1);
   };
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const allItemsLoaded = items.length >= totalItems;
+  const allItemsLoaded = filteredItems.length >= allFilteredItems.length;
 
   if (isLoading && page === 1) {
     return <Loader />;
@@ -87,13 +98,19 @@ const CatalogPage = () => {
   return (
     <div className="container">
       <Filters onSearch={handleSearch} brands={brands} prices={prices} />
-      <Catalog items={filteredItems} />
-      {!allItemsLoaded && (
-        <div className={css.btnContainer}>
-          <button className={css.loadMore} onClick={loadMore}>
-            Load more
-          </button>
-        </div>
+      {filteredItems.length > 0 ? (
+        <>
+          <Catalog items={filteredItems} />
+          {!allItemsLoaded && (
+            <div className={css.btnContainer}>
+              <button className={css.loadMore} onClick={loadMore}>
+                Load more
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <p>No cars found</p>
       )}
     </div>
   );

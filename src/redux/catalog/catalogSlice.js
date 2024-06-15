@@ -6,12 +6,10 @@ axios.defaults.baseURL = "https://664d86d5ede9a2b55653caa3.mockapi.io";
 
 export const fetchAdvert = createAsyncThunk(
   "catalog/fetchAdvert",
-  async ({ page = 1, limit = 12 }, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/Advert`, { params: { page, limit } });
-      const totalItemsResponse = await axios.get(`/Advert`);
-      const totalItems = totalItemsResponse.data.length;
-      return { data: response.data, page, totalItems };
+      const response = await axios.get(`/Advert`);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -24,7 +22,6 @@ const catalogSlice = createSlice({
     items: [],
     isLoading: false,
     hasError: false,
-    page: 1,
     totalItems: 0,
     favorites: [],
   },
@@ -44,16 +41,10 @@ const catalogSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAdvert.fulfilled, (state, action) => {
-        const { data, page, totalItems } = action.payload;
-        if (page === 1) {
-          state.items = data;
-        } else {
-          state.items = [...state.items, ...data];
-        }
+        state.items = action.payload;
         state.isLoading = false;
         state.hasError = false;
-        state.page = page;
-        state.totalItems = totalItems;
+        state.totalItems = action.payload.length;
       })
       .addCase(fetchAdvert.pending, (state) => {
         state.isLoading = true;
