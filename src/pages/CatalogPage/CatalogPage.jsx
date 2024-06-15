@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdvert } from "../../redux/catalog/catalogSlice";
 import {
@@ -23,6 +23,38 @@ const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({});
 
+  const applyFilters = useCallback(
+    (filters, items) => {
+      let filtered = items;
+      if (filters.brand) {
+        filtered = filtered.filter((car) =>
+          car.make.toLowerCase().includes(filters.brand.toLowerCase())
+        );
+      }
+
+      if (filters.price) {
+        const maxPrice = parseInt(filters.price, 10);
+        filtered = filtered.filter(
+          (car) => parseInt(car.rentalPrice.replace(/\D/g, ""), 10) <= maxPrice
+        );
+      }
+
+      if (filters.mileageFrom) {
+        const minMileage = parseInt(filters.mileageFrom, 10);
+        filtered = filtered.filter((car) => car.mileage >= minMileage);
+      }
+
+      if (filters.mileageTo) {
+        const maxMileage = parseInt(filters.mileageTo, 10);
+        filtered = filtered.filter((car) => car.mileage <= maxMileage);
+      }
+
+      setAllFilteredItems(filtered);
+      setFilteredItems(filtered.slice(0, page * 12));
+    },
+    [page]
+  );
+
   useEffect(() => {
     dispatch(fetchAdvert());
   }, [dispatch]);
@@ -41,40 +73,11 @@ const CatalogPage = () => {
 
       applyFilters(filters, items);
     }
-  }, [items]);
+  }, [items, filters, applyFilters]);
 
   useEffect(() => {
     applyFilters(filters, items);
-  }, [filters, items, page]);
-
-  const applyFilters = (filters, items) => {
-    let filtered = items;
-    if (filters.brand) {
-      filtered = filtered.filter((car) =>
-        car.make.toLowerCase().includes(filters.brand.toLowerCase())
-      );
-    }
-
-    if (filters.price) {
-      const maxPrice = parseInt(filters.price, 10);
-      filtered = filtered.filter(
-        (car) => parseInt(car.rentalPrice.replace(/\D/g, ""), 10) <= maxPrice
-      );
-    }
-
-    if (filters.mileageFrom) {
-      const minMileage = parseInt(filters.mileageFrom, 10);
-      filtered = filtered.filter((car) => car.mileage >= minMileage);
-    }
-
-    if (filters.mileageTo) {
-      const maxMileage = parseInt(filters.mileageTo, 10);
-      filtered = filtered.filter((car) => car.mileage <= maxMileage);
-    }
-
-    setAllFilteredItems(filtered);
-    setFilteredItems(filtered.slice(0, page * 12));
-  };
+  }, [filters, items, page, applyFilters]);
 
   const handleSearch = (filters) => {
     setFilters(filters);

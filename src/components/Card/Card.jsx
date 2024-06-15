@@ -8,11 +8,14 @@ import {
 import clsx from "clsx";
 import css from "./Card.module.css";
 import Icon from "../Icon/Icon";
+import CardModal from "../CardModal/CardModal";
+import { useToggle } from "../../hooks/useToggle";
 
 const Card = ({ car }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((favorite) => favorite.id === car.id);
+  const { isOpen, openModal, closeModal } = useToggle();
 
   const handleFavoriteClick = () => {
     if (isFavorite) {
@@ -55,7 +58,11 @@ const Card = ({ car }) => {
         </div>
       </div>
 
-      <button className={css.btn}>Learn More</button>
+      <button className={css.btn} onClick={openModal}>
+        Learn More
+      </button>
+
+      {isOpen && <CardModal car={car} closeModal={closeModal} />}
     </div>
   );
 };
