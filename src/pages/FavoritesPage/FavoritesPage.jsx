@@ -13,7 +13,10 @@ const FavoritesPage = () => {
       {favorites.length === 0 ? (
         <p className={css.notFound}>You have no favorite ads...</p>
       ) : (
-        <Catalog items={favorites} />
+        <div>
+          <h2 className={css.header}>Favorite car ads</h2>
+          <Catalog items={favorites} />
+        </div>
       )}
     </div>
   );
