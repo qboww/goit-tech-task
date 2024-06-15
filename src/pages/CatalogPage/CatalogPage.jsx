@@ -113,7 +113,7 @@ const CatalogPage = () => {
           )}
         </>
       ) : (
-        <p>No cars found</p>
+        <p className={css.notFound}>No cars found...</p>
       )}
     </div>
   );

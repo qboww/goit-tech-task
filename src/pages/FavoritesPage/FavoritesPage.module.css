@@ -1,4 +1,3 @@
-/* src/pages/Favorites/FavoritesPage.module.css */
 .container {
   padding: 20px;
 }
@@ -10,4 +9,13 @@
 
 .cardsList > div {
   margin: 10px;
+}
+
+.notFound {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 24px;
 }

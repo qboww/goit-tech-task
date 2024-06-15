@@ -1,0 +1,95 @@
+.heroSection {
+  position: relative;
+  background-image: url("https://ftp.goit.study/img/cars-test-task/volvo_xc90.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 60vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px; 
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.content h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #3470ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.ctaButton:hover {
+  background-color: #0b44cd;
+}
+
+.featuresSection {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 150px;
+}
+
+.featuresSection h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feature {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.feature h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .features {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

@@ -1,14 +1,18 @@
-import React, { Fragment } from "react";
+import React from "react";
 import AppRoutes from "./routes/AppRoutes";
-
 import Navigation from "./components/Navigation/Navigation";
+import Footer from "./components/Footer/Footer";
+import css from "./App.module.css";
 
 const App = () => {
   return (
-    <>
+    <div className={css.appContainer}>
       <Navigation />
-      <AppRoutes />
-    </>
+      <div className={css.content}>
+        <AppRoutes />
+      </div>
+      <Footer />
+    </div>
   );
 };
 

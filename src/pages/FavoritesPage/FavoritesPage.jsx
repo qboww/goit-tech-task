@@ -3,13 +3,15 @@ import { useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/catalog/catalogSelectors";
 import Catalog from "../../components/Catalog/Catalog";
 
+import css from "./FavoritesPage.module.css";
+
 const FavoritesPage = () => {
   const favorites = useSelector(selectFavorites);
 
   return (
     <div className="container">
       {favorites.length === 0 ? (
-        <p>You have no favorite cars.</p>
+        <p className={css.notFound}>You have no favorite ads...</p>
       ) : (
         <Catalog items={favorites} />
       )}
