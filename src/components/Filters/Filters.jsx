@@ -1,4 +1,3 @@
-// src/components/Filters/Filters.js
 import React, { useState } from "react";
 import css from "./Filters.module.css";
 

@@ -1,0 +1,13 @@
+/* src/pages/Favorites/FavoritesPage.module.css */
+.container {
+  padding: 20px;
+}
+
+.cardsList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardsList > div {
+  margin: 10px;
+}

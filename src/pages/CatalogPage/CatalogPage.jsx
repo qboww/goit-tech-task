@@ -1,7 +1,6 @@
-// src/pages/Catalog/CatalogPage.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdvert } from "../../redux/catalog/catalogOps";
+import { fetchAdvert } from "../../redux/catalog/catalogSlice";
 import {
   selectCatalogItems,
   selectIsLoading,
@@ -29,16 +28,18 @@ const CatalogPage = () => {
   }, [dispatch, page]);
 
   useEffect(() => {
-    setFilteredItems(items);
-    const uniqueBrands = [...new Set(items.map((car) => car.make))];
-    setBrands(uniqueBrands);
+    if (items.length) {
+      setFilteredItems(items);
+      const uniqueBrands = [...new Set(items.map((car) => car.make))];
+      setBrands(uniqueBrands);
 
-    const uniquePrices = [
-      ...new Set(
-        items.map((car) => parseInt(car.rentalPrice.replace(/\D/g, ""), 10))
-      ),
-    ].sort((a, b) => a - b);
-    setPrices(uniquePrices);
+      const uniquePrices = [
+        ...new Set(
+          items.map((car) => parseInt(car.rentalPrice.replace(/\D/g, ""), 10))
+        ),
+      ].sort((a, b) => a - b);
+      setPrices(uniquePrices);
+    }
   }, [items]);
 
   const handleSearch = (filters) => {

@@ -24,8 +24,6 @@
   top: 8px;
   right: 8px;
   z-index: 1000;
-  fill: none;
-
   cursor: pointer;
 }
 
@@ -35,7 +33,6 @@
   padding: 12px 99px;
   width: 100%;
   height: 44px;
-
   background: #3470ff;
   font-family: var(--font-family);
   font-weight: 600;
@@ -43,7 +40,6 @@
   line-height: 143%;
   color: #fff;
   cursor: pointer;
-
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -58,7 +54,6 @@
   font-size: 12px;
   line-height: 150%;
   color: rgba(18, 20, 23, 0.5);
-
   display: flex;
   flex-wrap: wrap;
   gap: 4px 6px;
@@ -67,7 +62,6 @@
 .tags p {
   height: 16px;
   padding-right: 6px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,10 +77,8 @@
   font-size: 16px;
   line-height: 150%;
   color: #121417;
-
   display: flex;
   justify-content: space-between;
-
   margin-bottom: 8px;
   margin-right: 8px;
 }

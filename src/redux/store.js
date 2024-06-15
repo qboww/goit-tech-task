@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { combineReducers } from "redux";
-import { catalogReducer } from "./catalog/catalogSlice";
+import catalogReducer from "./catalog/catalogSlice";
 
 const persistConfig = {
   key: "root",
@@ -10,19 +9,16 @@ const persistConfig = {
   whitelist: ["catalog"],
 };
 
-const rootReducer = combineReducers({
-  catalog: catalogReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, catalogReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    catalog: persistedReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-        ignoredPaths: ["register"],
       },
     }),
 });

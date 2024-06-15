@@ -1,22 +1,41 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  selectFavorites,
+} from "../../redux/catalog/catalogSlice";
+import clsx from "clsx";
 import css from "./Card.module.css";
-
 import Icon from "../Icon/Icon";
 
 const Card = ({ car }) => {
-  const addressParts = car.address.split(", ");
-  const city = addressParts[1];
-  const country = addressParts[2];
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.some((favorite) => favorite.id === car.id);
+
+  const handleFavoriteClick = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(car));
+    } else {
+      dispatch(addToFavorites(car));
+    }
+  };
+
+  const addressParts = car.address ? car.address.split(", ") : [];
+  const city = addressParts.length > 1 ? addressParts[1] : "Unknown";
+  const country = addressParts.length > 2 ? addressParts[2] : "Unknown";
 
   return (
     <div className={css.card}>
       <div className={css.imageContainer}>
         <img className={css.image} src={car.img} alt={car.model} />
         <Icon
-          id="icon-heart-empty"
+          id={isFavorite ? "icon-heart-filled" : "icon-heart-empty"}
           width={18}
           height={16}
-          className={css.icon}
+          className={clsx(css.icon)}
+          onClick={handleFavoriteClick}
         />
       </div>
 
@@ -32,7 +51,7 @@ const Card = ({ car }) => {
           <p>{city}</p>
           <p>{country}</p>
           <p>{car.rentalCompany}</p>
-          {car.functionalities.length > 0 && <p>{car.accessories[0]}</p>}
+          {car.functionalities.length > 0 && <p>{car.functionalities[0]}</p>}
         </div>
       </div>
 
