@@ -24,6 +24,7 @@
   top: 8px;
   right: 8px;
   z-index: 1000;
+  fill: "none";
 
   cursor: pointer;
 }
@@ -97,4 +98,3 @@
   line-height: 150%;
   color: #3470ff;
 }
-
