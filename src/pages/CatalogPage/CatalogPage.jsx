@@ -1,4 +1,4 @@
-// src/pages/CatalogPage/CatalogPage.js
+// src/pages/Catalog/CatalogPage.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdvert } from "../../redux/catalog/catalogOps";
@@ -6,11 +6,11 @@ import {
   selectCatalogItems,
   selectIsLoading,
   selectHasError,
+  selectTotalItems,
 } from "../../redux/catalog/catalogSlice";
 import Filters from "../../components/Filters/Filters";
 import Catalog from "../../components/Catalog/Catalog";
 import Loader from "../../components/Loader/Loader";
-
 import css from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
@@ -18,13 +18,15 @@ const CatalogPage = () => {
   const items = useSelector(selectCatalogItems);
   const isLoading = useSelector(selectIsLoading);
   const hasError = useSelector(selectHasError);
+  const totalItems = useSelector(selectTotalItems);
   const [filteredItems, setFilteredItems] = useState([]);
   const [brands, setBrands] = useState([]);
   const [prices, setPrices] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAdvert());
-  }, [dispatch]);
+    dispatch(fetchAdvert({ page }));
+  }, [dispatch, page]);
 
   useEffect(() => {
     setFilteredItems(items);
@@ -67,7 +69,13 @@ const CatalogPage = () => {
     setFilteredItems(filtered);
   };
 
-  if (isLoading) {
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const allItemsLoaded = items.length >= totalItems;
+
+  if (isLoading && page === 1) {
     return <Loader />;
   }
 
@@ -79,9 +87,13 @@ const CatalogPage = () => {
     <div className="container">
       <Filters onSearch={handleSearch} brands={brands} prices={prices} />
       <Catalog items={filteredItems} />
-      <div className={css.btnContainer}>
-        <button className={css.loadMore}>Load more</button>
-      </div>
+      {!allItemsLoaded && (
+        <div className={css.btnContainer}>
+          <button className={css.loadMore} onClick={loadMore}>
+            Load more
+          </button>
+        </div>
+      )}
     </div>
   );
 };
