@@ -26,6 +26,19 @@ const CardModal = ({ car, isOpen, closeModal }) => {
   const sliceCity = (address) => address.split(", ")[1];
   const sliceCountry = (address) => address.split(", ")[2];
 
+  const formatCondition = (condition) => {
+    const match = condition.match(/Minimum age: (\d+)/);
+    if (match) {
+      const age = match[1];
+      return (
+        <>
+          Minimum age: <span className={css.tag_accent}>{age}</span>
+        </>
+      );
+    }
+    return condition;
+  };
+
   return (
     <Modal
       className={css.modal}
@@ -75,7 +88,7 @@ const CardModal = ({ car, isOpen, closeModal }) => {
             {Array.isArray(rentalConditions) &&
               rentalConditions.map((condition, index) => (
                 <li key={index} className={css.conditions_item}>
-                  {condition}
+                  {formatCondition(condition)}
                 </li>
               ))}
             <li className={css.conditions_item}>

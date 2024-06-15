@@ -1,0 +1,8 @@
+.notFound {
+  position: fixed;
+  top: 33%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+}
