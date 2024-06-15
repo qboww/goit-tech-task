@@ -48,6 +48,7 @@ select {
   border-radius: 14px;
   border: none;
   background-color: #f7f7fb;
+  outline: none;
 
   font-family: var(--font-family);
   font-weight: 500;
@@ -60,7 +61,7 @@ select {
   border-radius: 14px;
   padding: 14px 18px;
   width: 125px;
-  height: 48px;
+
 }
 
 .selectBrand {
