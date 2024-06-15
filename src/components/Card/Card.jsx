@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavorites,
   removeFromFavorites,
-  selectFavorites,
 } from "../../redux/catalog/catalogSlice";
+import { selectFavorites } from "../../redux/catalog/catalogSelectors";
 import clsx from "clsx";
 import css from "./Card.module.css";
 import Icon from "../Icon/Icon";
@@ -15,6 +15,7 @@ const Card = ({ car }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((favorite) => favorite.id === car.id);
+
   const { isOpen, openModal, closeModal } = useToggle();
 
   const handleFavoriteClick = () => {
@@ -25,9 +26,9 @@ const Card = ({ car }) => {
     }
   };
 
-  const addressParts = car.address ? car.address.split(", ") : [];
-  const city = addressParts.length > 1 ? addressParts[1] : "Unknown";
-  const country = addressParts.length > 2 ? addressParts[2] : "Unknown";
+  const addressParts = car.address.split(", ");
+  const city = addressParts[1];
+  const country = addressParts[2];
 
   return (
     <div className={css.card}>
@@ -37,7 +38,7 @@ const Card = ({ car }) => {
           id={isFavorite ? "icon-heart-filled" : "icon-heart-empty"}
           width={18}
           height={16}
-          className={clsx(css.icon)}
+          className={clsx(css.icon, { [css.favorite]: isFavorite })}
           onClick={handleFavoriteClick}
         />
       </div>
@@ -62,7 +63,9 @@ const Card = ({ car }) => {
         Learn More
       </button>
 
-      {isOpen && <CardModal car={car} closeModal={closeModal} />}
+      {isOpen && (
+        <CardModal car={car} isOpen={isOpen} closeModal={closeModal} />
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import catalogReducer from "./catalog/catalogSlice";
@@ -9,12 +9,14 @@ const persistConfig = {
   whitelist: ["catalog"],
 };
 
-const persistedReducer = persistReducer(persistConfig, catalogReducer);
+const rootReducer = combineReducers({
+  catalog: catalogReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    catalog: persistedReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

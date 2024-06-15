@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectFavorites } from "../../redux/catalog/catalogSlice";
+import { selectFavorites } from "../../redux/catalog/catalogSelectors";
 import Catalog from "../../components/Catalog/Catalog";
 
 const FavoritesPage = () => {

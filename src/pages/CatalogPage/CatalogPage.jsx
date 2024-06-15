@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdvert } from "../../redux/catalog/catalogSlice";
+import { fetchAdvert } from "../../redux/catalog/catalogOps";
 import {
   selectCatalogItems,
   selectIsLoading,
   selectHasError,
-} from "../../redux/catalog/catalogSlice";
+} from "../../redux/catalog/catalogSelectors";
 import Filters from "../../components/Filters/Filters";
 import Catalog from "../../components/Catalog/Catalog";
 import Loader from "../../components/Loader/Loader";
@@ -22,6 +22,10 @@ const CatalogPage = () => {
   const [prices, setPrices] = useState([]);
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({});
+
+  useEffect(() => {
+    dispatch(fetchAdvert());
+  }, [dispatch]);
 
   const applyFilters = useCallback(
     (filters, items) => {
@@ -54,10 +58,6 @@ const CatalogPage = () => {
     },
     [page]
   );
-
-  useEffect(() => {
-    dispatch(fetchAdvert());
-  }, [dispatch]);
 
   useEffect(() => {
     if (items.length) {
