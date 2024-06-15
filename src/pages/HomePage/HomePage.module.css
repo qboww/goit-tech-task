@@ -10,7 +10,7 @@
   text-align: center;
   border-radius: 10px; 
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .heroSection::before {
@@ -63,7 +63,7 @@
 
 .featuresSection h2 {
   font-size: 28px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .features {
