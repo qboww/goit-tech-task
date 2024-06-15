@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 import css from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -12,9 +13,24 @@ const Navigation = () => {
           </NavLink>
         </div>
         <nav className={css.navLinks}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/catalog">Catalog</NavLink>
-          <NavLink to="/favorites">Favorites</NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) => clsx({ [css.activeLink]: isActive })}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/catalog"
+            className={({ isActive }) => clsx({ [css.activeLink]: isActive })}
+          >
+            Catalog
+          </NavLink>
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) => clsx({ [css.activeLink]: isActive })}
+          >
+            Favorites
+          </NavLink>
         </nav>
       </div>
     </header>
