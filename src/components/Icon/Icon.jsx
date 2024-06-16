@@ -1,12 +1,15 @@
 import React from "react";
-import Icons from "../../assets/icons.svg";
 
-const Icon = ({ id, className, width, height, onClick }) => {
-  return (
-    <svg className={className} width={width} height={height} onClick={onClick}>
-      <use href={`${Icons}#${id}`} />
-    </svg>
-  );
-};
+const Icon = ({ id, width, height, className, onClick }) => (
+  <svg
+    className={className}
+    onClick={onClick}
+    width={width}
+    height={height}
+    aria-hidden="true"
+  >
+    <use xlinkHref={`#${id}`} />
+  </svg>
+);
 
 export default Icon;
