@@ -109,6 +109,13 @@
   }
 }
 
+.form input {
+  font-size: 16px; /* prevents zoom on mobile */
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .form label {
   display: flex;
   flex-direction: column;
@@ -128,4 +135,8 @@
 
 .submitButton:hover {
   background: #0056b3;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* prevents font auto-scaling */
 }

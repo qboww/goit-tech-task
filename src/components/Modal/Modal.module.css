@@ -33,3 +33,7 @@
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+html {
+  -webkit-text-size-adjust: 100%; /* prevents font auto-scaling */
+}
