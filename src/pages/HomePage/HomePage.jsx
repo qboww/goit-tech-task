@@ -69,7 +69,7 @@ const HomePage = () => {
               <input type="email" required />
             </label>
             <label>
-              Service Date:
+              Choose date:
               <input type="date" />
             </label>
             <button type="submit" className={css.submitButton}>
