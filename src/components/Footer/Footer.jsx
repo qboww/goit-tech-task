@@ -8,14 +8,14 @@ const Footer = () => {
         <div className={css.section}>
           <h4>About Us</h4>
           <p>
-            Welcome to Car Rentals, your number one source for renting cars.
+            Welcome to SantehStyle, your number one source for selling plumbing.
             We`re dedicated to providing you the best service, with a focus on
-            dependability, customer service, and unique rental experiences.
+            dependability and customer service.
           </p>
         </div>
         <div className={css.section}>
           <h4>Contact Information</h4>
-          <p>Email: info@carrentals.com</p>
+          <p>Email: info@santehstyle.com</p>
           <p>Phone: +1 800 123 4567</p>
         </div>
         <div className={css.section}>
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={css.footerBottom}>
-        <p>&copy; 2024 Car Rentals. All rights reserved.</p>
+        <p>&copy; 2024 SantehStyle. All rights reserved.</p>
       </div>
     </footer>
   );

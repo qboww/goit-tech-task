@@ -1,8 +1,9 @@
 .heroSection {
   position: relative;
-  background-image: url("https://ftp.goit.study/img/cars-test-task/volvo_xc90.jpeg");
+  background-image: url("https://s.032.ua/section/newsInText/upload/images/news/intext/000/050/693/santehnikahuidautitazbiderakovinailiumyvalnik620_5cc19c632d92b.jpg");
   background-size: cover;
   background-position: center;
+  width: 100%;
   height: 60vh; 
   display: flex;
   align-items: center;
@@ -10,7 +11,8 @@
   text-align: center;
   border-radius: 10px; 
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 24px;
+  padding: 0px 4px;
 }
 
 .heroSection::before {
@@ -21,7 +23,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(2px);
 }
 
 .content {
@@ -37,7 +39,7 @@
 
 .content p {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .ctaButton {
@@ -49,6 +51,9 @@
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .ctaButton:hover {
@@ -92,4 +97,31 @@
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.submitButton {
+  margin-top: 24px;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: #0056b3;
 }
