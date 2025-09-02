@@ -37,3 +37,7 @@
 html {
   -webkit-text-size-adjust: 100%; /* prevents font auto-scaling */
 }
+
+  h2{
+    margin-bottom: 8px;
+  }

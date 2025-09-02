@@ -69,8 +69,8 @@ const HomePage = () => {
               <input type="email" required />
             </label>
             <label>
-              Choose date:
-              <input type="date" />
+              Write a message:
+              <textarea type="date" />
             </label>
             <button type="submit" className={css.submitButton}>
               Submit
