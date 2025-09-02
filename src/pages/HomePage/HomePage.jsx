@@ -15,6 +15,12 @@ const HomePage = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // stop page reload
     setIsSubmitted(true);
+
+    // Trigger FB Pixel Lead event
+    if (typeof fbq !== "undefined") {
+      fbq("track", "Lead");
+    }
+
     console.log("✅ Form submitted!");
   };
 
@@ -36,21 +42,22 @@ const HomePage = () => {
           <div className={css.feature}>
             <h3>Wide Selection</h3>
             <p>
-              Choose from a wide range of plumbing fixtures to suit your needs and
-              preferences.
+              Choose from a wide range of plumbing fixtures to suit your needs
+              and preferences.
             </p>
           </div>
           <div className={css.feature}>
             <h3>Affordable Prices</h3>
             <p>
-              We offer competitive prices and great deals on all our plumbing service.
+              We offer competitive prices and great deals on all our plumbing
+              service.
             </p>
           </div>
           <div className={css.feature}>
             <h3>Convenient Locations</h3>
             <p>
-              Pick up and drop off your plumbing fixtures at any of our convenient
-              locations.
+              Pick up and drop off your plumbing fixtures at any of our
+              convenient locations.
             </p>
           </div>
         </div>
@@ -77,7 +84,9 @@ const HomePage = () => {
             </button>
           </form>
         ) : (
-          <p className={css.successMessage}>🎉 Thank you! We’ll get in touch soon.</p>
+          <p className={css.successMessage}>
+            🎉 Thank you! We’ll get in touch soon.
+          </p>
         )}
       </Modal>
     </div>
