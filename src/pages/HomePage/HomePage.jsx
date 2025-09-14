@@ -26,7 +26,7 @@ const HomePage = () => {
 
     // Trigger FB Pixel Lead event
     if (typeof fbq !== "undefined") {
-      fbq("trackCustom", "Lead");
+      fbq("track", "Lead");
     }
 
     console.log("✅ Form submitted!");
@@ -97,7 +97,7 @@ const HomePage = () => {
               className={css.submitButton}
               onClick={() => {
                 if (typeof fbq !== "undefined") {
-                  fbq("track", "Submit");
+                  fbq("trackCustom", "Submit");
                 }
               }}
             >
