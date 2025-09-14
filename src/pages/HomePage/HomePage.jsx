@@ -30,7 +30,7 @@ const HomePage = () => {
         <div className={css.content}>
           <h1>Welcome to Our Plumbing Store</h1>
           <p>Find the best plumbing fixtures with unbeatable prices.</p>
-          <button className={css.ctaButton} onClick={handleOpenModal}>
+          <button id="buttonContact" className={css.ctaButton} onClick={handleOpenModal}>
             Contact us
           </button>
         </div>
@@ -79,7 +79,7 @@ const HomePage = () => {
               Write a message:
               <textarea type="date" />
             </label>
-            <button type="submit" className={css.submitButton}>
+            <button type="submit" id="buttonSend" className={css.submitButton}>
               Submit
             </button>
           </form>
