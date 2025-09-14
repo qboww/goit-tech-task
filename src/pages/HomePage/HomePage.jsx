@@ -6,7 +6,15 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+
+    // FB Pixel Contact event
+    if (typeof fbq !== "undefined") {
+      fbq("track", "Contact");
+    }
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setIsSubmitted(false); // reset when closing
@@ -30,7 +38,11 @@ const HomePage = () => {
         <div className={css.content}>
           <h1>Welcome to Our Plumbing Store</h1>
           <p>Find the best plumbing fixtures with unbeatable prices.</p>
-          <button id="buttonContact" className={css.ctaButton} onClick={handleOpenModal}>
+          <button
+            id="buttonContact"
+            className={css.ctaButton}
+            onClick={handleOpenModal}
+          >
             Contact us
           </button>
         </div>
@@ -79,7 +91,16 @@ const HomePage = () => {
               Write a message:
               <textarea type="date" />
             </label>
-            <button type="submit" id="buttonSend" className={css.submitButton}>
+            <button
+              type="submit"
+              id="buttonSend"
+              className={css.submitButton}
+              onClick={() => {
+                if (typeof fbq !== "undefined") {
+                  fbq("track", "Submit");
+                }
+              }}
+            >
               Submit
             </button>
           </form>
