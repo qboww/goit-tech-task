@@ -11,7 +11,7 @@ const HomePage = () => {
 
     // FB Pixel Contact event
     if (typeof fbq !== "undefined") {
-      fbq("track", "Contact");
+      fbq("trackCustom", "Contact");
     }
   };
 
@@ -26,7 +26,7 @@ const HomePage = () => {
 
     // Trigger FB Pixel Lead event
     if (typeof fbq !== "undefined") {
-      fbq("track", "Lead");
+      fbq("trackCustom", "Lead");
     }
 
     console.log("✅ Form submitted!");
