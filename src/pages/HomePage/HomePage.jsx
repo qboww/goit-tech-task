@@ -97,7 +97,7 @@ const HomePage = () => {
               className={css.submitButton}
               onClick={() => {
                 if (typeof fbq !== "undefined") {
-                  fbq("trackCustom", "Submit");
+                  fbq("trackCustom", "FormSubmit");
                 }
               }}
             >
