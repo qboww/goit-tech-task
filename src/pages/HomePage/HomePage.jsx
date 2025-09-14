@@ -11,7 +11,7 @@ const HomePage = () => {
 
     // FB Pixel Contact event
     if (typeof fbq !== "undefined") {
-      fbq("trackCustom", "Contact");
+      fbq("trackCustom", "ContactModalOpen");
     }
   };
 
@@ -97,7 +97,7 @@ const HomePage = () => {
               className={css.submitButton}
               onClick={() => {
                 if (typeof fbq !== "undefined") {
-                  fbq("trackCustom", "FormSubmit");
+                  fbq("trackCustom", "ContactFormSubmit");
                 }
               }}
             >
