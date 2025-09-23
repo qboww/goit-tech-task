@@ -34,7 +34,7 @@ const HomePage = () => {
             <h3>Convenient Locations</h3>
             <p>
               Pick up and drop off your rental car at any of our convenient
-              locations.
+              locations. 
             </p>
           </div>
         </div>
