@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import css from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -8,9 +9,9 @@ const HomePage = () => {
         <div className={css.content}>
           <h1>Welcome to Our Car Rental Service</h1>
           <p>Find the best rental cars with unbeatable prices.</p>
-          <a href="/catalog" className={css.ctaButton}>
+          <NavLink to="/catalog" className={css.ctaButton}>
             Explore Cars
-          </a>
+          </NavLink>
         </div>
       </div>
       <div className={css.featuresSection}>
@@ -34,7 +35,7 @@ const HomePage = () => {
             <h3>Convenient Locations</h3>
             <p>
               Pick up and drop off your rental car at any of our convenient
-              locations. 
+              locations.
             </p>
           </div>
         </div>
