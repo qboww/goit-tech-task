@@ -6,65 +6,72 @@ import {
 import { selectFavorites } from "../../redux/catalog/catalogSelectors";
 import clsx from "clsx";
 import css from "./Card.module.css";
-import Icon from "../Icon/Icon";
-import CardModal from "../CardModal/CardModal";
-import { useToggle } from "../../hooks/useToggle";
 
-const Card = ({ car }) => {
+const Card = ({ item }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-  const isFavorite = favorites.some((favorite) => favorite.id === car.id);
+  const isFavorite = favorites.some((favorite) => favorite.id === item?.id);
 
-  const { isOpen, openModal, closeModal } = useToggle();
-
-  const handleFavoriteClick = () => {
+  const handleViewDetailsClick = () => {
     if (isFavorite) {
-      dispatch(removeFromFavorites(car));
+      dispatch(removeFromFavorites(item));
     } else {
-      dispatch(addToFavorites(car));
+      dispatch(addToFavorites(item));
     }
   };
 
-  const addressParts = car.address.split(", ");
-  const city = addressParts[1];
-  const country = addressParts[2];
+  if (!item) {
+    return (
+      <div className={css.card}>
+        <div className={css.error}>Product not available</div>
+      </div>
+    );
+  }
 
   return (
     <div className={css.card}>
       <div className={css.imageContainer}>
-        <img className={css.image} src={car.img} alt={car.model} />
-        <Icon
-          id={isFavorite ? "icon-heart-filled" : "icon-heart-empty"}
-          width={18}
-          height={16}
-          className={clsx(css.icon, { [css.favorite]: isFavorite })}
-          onClick={handleFavoriteClick}
+        <img 
+          className={css.image} 
+          src={item.img || "/placeholder-image.jpg"} 
+          alt={item.name || "Product image"} 
         />
       </div>
 
       <div className={css.dataContainer}>
         <div className={css.namePrice}>
-          <p>
-            {car.make} <span className={css.model}>{car.model}</span>,{" "}
-            {car.year}
-          </p>
-          <p>{car.rentalPrice}</p>
+          <h3 className={css.name}>{item.name || "Unknown Product"}</h3>
+          <p className={css.price}>${item.price || "N/A"}</p>
         </div>
-        <div className={css.tags}>
-          <p>{city}</p>
-          <p>{country}</p>
-          <p>{car.rentalCompany}</p>
-          {car.functionalities.length > 0 && <p>{car.functionalities[0]}</p>}
+        
+        <div className={css.brandCategory}>
+          <p>{item.brand || "No brand"}</p>
+          <p>{item.category || "Uncategorized"}</p>
+        </div>
+
+        {item.description && (
+          <p className={css.description}>{item.description}</p>
+        )}
+
+        <div className={css.availability}>
+          <span className={clsx(css.status, {
+            [css.available]: item.available,
+            [css.unavailable]: !item.available
+          })}>
+            {item.available ? "In Stock" : "Out of Stock"}
+          </span>
         </div>
       </div>
 
-      <button className={css.btn} onClick={openModal}>
-        Learn More
+      <button 
+        className={clsx(css.btn, {
+          [css.favoriteBtn]: isFavorite
+        })}
+        onClick={handleViewDetailsClick}
+        disabled={!item.available}
+      >
+        {isFavorite ? "Remove from Cart" : "Add to Cart"}
       </button>
-
-      {isOpen && (
-        <CardModal car={car} isOpen={isOpen} closeModal={closeModal} />
-      )}
     </div>
   );
 };

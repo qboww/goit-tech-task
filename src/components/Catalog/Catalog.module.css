@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 50px 29px;
+  gap: 16px;
 
   margin: 0px;
   padding: 0px;
@@ -21,6 +21,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: unset;
-    gap: 50px 29px;
+    gap: 16px;
   }
 }

@@ -7,7 +7,7 @@ export const fetchAdvert = createAsyncThunk(
   "catalog/fetchAdvert",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/Advert`);
+      const response = await axios.get(`/Clothes`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

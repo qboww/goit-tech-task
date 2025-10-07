@@ -6,10 +6,8 @@ const Catalog = ({ items }) => {
   return (
     <div className={css.catalogContainer}>
       <ul className={css.cardsList}>
-        {items.map((car) => (
-          <li key={car.id}>
-            <Card car={car} />
-          </li>
+        {items.map((item) => (
+          <Card key={item.id} item={item} /> 
         ))}
       </ul>
     </div>

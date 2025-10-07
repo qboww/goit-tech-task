@@ -9,7 +9,7 @@ const Navigation = () => {
       <div className={css.navContainer}>
         <div className={css.logo}>
           <NavLink to="/" className={css.logoLink}>
-            UrbanRide
+            Di Brand
           </NavLink>
         </div>
         <nav className={css.navLinks}>
@@ -26,10 +26,10 @@ const Navigation = () => {
             Catalog
           </NavLink>
           <NavLink
-            to="/favorites"
+            to="/cart"
             className={({ isActive }) => clsx({ [css.activeLink]: isActive })}
           >
-            Favorites
+            Cart
           </NavLink>
         </nav>
       </div>
