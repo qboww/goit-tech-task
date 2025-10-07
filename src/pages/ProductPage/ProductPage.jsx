@@ -220,15 +220,6 @@ const ProductPage = () => {
             </button>
           </div>
 
-          {sizeNotSelected && (
-            <div className={css.sizeWarning}>
-              <p>
-                Note: Size not selected. You may want to choose a size before
-                purchasing.
-              </p>
-            </div>
-          )}
-
           <div className={css.descriptionSection}>
             <h3 className={css.sectionTitle}>DESCRIPTION</h3>
             <p className={css.description}>{product.description}</p>

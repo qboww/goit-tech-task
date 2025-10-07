@@ -88,7 +88,7 @@ const Footer = () => {
               <a href="/accessibility">ACCESSIBILITY</a>
             </div>
             <div className={css.copyright}>
-              <p>&copy; 2024 DI. ALL RIGHTS RESERVED.</p>
+              <p>&copy; 2025 DI. ALL RIGHTS RESERVED.</p>
             </div>
           </div>
         </div>

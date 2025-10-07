@@ -138,7 +138,6 @@ const CartPage = () => {
                     <span>${tax.toFixed(2)}</span>
                   </div>
                   
-                  <div className={css.divider}></div>
                   
                   <div className={`${css.summaryRow} ${css.total}`}>
                     <span>TOTAL</span>

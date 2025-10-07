@@ -8,7 +8,7 @@ const HomePage = () => {
       {/* Hero Banner */}
       <div className={css.heroBanner}>
         <div className={css.heroContent}>
-          <h1 className={css.heroTitle}>NEW COLLECTION 2024</h1>
+          <h1 className={css.heroTitle}>NEW COLLECTION 2025</h1>
           <p className={css.heroSubtitle}>Discover the essence of modern elegance</p>
           <NavLink to="/catalog" className={css.heroButton}>
             SHOP NOW
@@ -16,7 +16,7 @@ const HomePage = () => {
         </div>
         <img 
           src="/images/hero-banner.jpg" 
-          alt="New Collection 2024"
+          alt="New Collection 2025"
           className={css.heroImage}
         />
       </div>
