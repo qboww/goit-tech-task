@@ -6,7 +6,7 @@ import css from "./Loader.module.css";
 const Loader = () => {
   return (
     <div className={css.loaderWrapper}>
-      <RotatingLines
+      {/* <RotatingLines
         visible={true}
         height="25"
         width="25"
@@ -15,7 +15,7 @@ const Loader = () => {
         strokeWidth="5"
         animationDuration="0.75"
         ariaLabel="rotating-lines-loading"
-      />
+      /> */}
     </div>
   );
 };

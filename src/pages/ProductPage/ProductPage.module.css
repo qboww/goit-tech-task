@@ -2,6 +2,41 @@
   padding: 0;
   max-width: 1400px;
   margin: 0 auto;
+  padding-bottom: 80px; /* Space for sticky buttons */
+}
+
+/* Mobile Header */
+.mobileHeader {
+  display: none;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileBackButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  color: #000;
+}
+
+.mobileTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.mobileSpacer {
+  width: 24px;
 }
 
 .breadcrumb {
@@ -144,6 +179,21 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
+.sizeHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.sizeRequired {
+  font-size: 0.7rem;
+  color: #ff4444;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .sizeList {
   display: flex;
   gap: 8px;
@@ -230,6 +280,7 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .addToCartBtn {
@@ -250,6 +301,11 @@
 .addToCartBtn.inCart:hover:not(:disabled) {
   background: #000;
   color: white;
+}
+
+.addToCartBtn.sizeRequiredBtn {
+  background: #ff4444;
+  border-color: #ff4444;
 }
 
 .buyNowBtn {
@@ -350,7 +406,12 @@
   margin-bottom: 30px;
 }
 
+/* Mobile Sticky Actions */
+.mobileStickyActions {
+  display: none;
+}
 
+/* Mobile Responsive */
 @media (max-width: 1024px) {
   .productContainer {
     gap: 40px;
@@ -358,33 +419,154 @@
 }
 
 @media (max-width: 768px) {
+  .productPage {
+    padding-bottom: 100px;
+  }
+
+  .mobileHeader {
+    display: flex;
+  }
+
+  .breadcrumb {
+    display: none;
+  }
+
   .productContainer {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 0;
   }
   
   .imageSection {
     position: static;
   }
   
-  .breadcrumb {
-    padding: 20px 0 15px 0;
-    margin-bottom: 30px;
-  }
-  
   .productName {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    padding: 0 20px;
   }
   
-  .actionButtons {
-    margin-bottom: 30px;
+  .productReference {
+    padding: 0 20px;
+  }
+  
+  .price {
+    padding: 0 20px;
+    font-size: 1.3rem;
   }
   
   .colorSection,
   .sizeSection,
-  .descriptionSection {
+  .descriptionSection,
+  .productDetails,
+  .featuresSection {
+    padding: 0 20px 25px 20px;
     margin-bottom: 25px;
-    padding-bottom: 25px;
+  }
+
+  .availability {
+    padding: 0 20px;
+  }
+
+  .detailsSection {
+    padding: 0;
+  }
+
+  .actionButtons {
+    margin-bottom: 0;
+  }
+
+  /* Hide regular action buttons on mobile */
+  .actionButtons:not(.mobileStickyActions .actionButtons) {
+    display: none;
+  }
+
+  /* Show sticky action buttons on mobile */
+  .mobileStickyActions {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px 20px;
+    border-top: 1px solid #e5e5e5;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  .mobileStickyActions .actionButtons {
+    margin-bottom: 0;
+    gap: 10px;
+  }
+
+  .mobileStickyActions .addToCartBtn,
+  .mobileStickyActions .buyNowBtn {
+    padding: 18px 20px;
+    font-size: 0.9rem;
+  }
+
+  .colorList {
+    gap: 8px;
+  }
+
+  .colorTag {
+    padding: 10px 16px;
+    min-width: 70px;
+    font-size: 0.75rem;
+  }
+
+  .sizeList {
+    gap: 6px;
+  }
+
+  .sizeTag {
+    padding: 10px 14px;
+    min-width: 45px;
+    font-size: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .detailItem {
+    padding: 10px 0;
+  }
+
+  .feature {
+    gap: 3px;
   }
 }
 
+@media (max-width: 480px) {
+  .productName {
+    font-size: 1.1rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  .mobileStickyActions {
+    padding: 12px 15px;
+  }
+
+  .mobileStickyActions .addToCartBtn,
+  .mobileStickyActions .buyNowBtn {
+    padding: 16px 15px;
+    font-size: 0.85rem;
+  }
+
+  .colorTag {
+    padding: 8px 12px;
+    min-width: 60px;
+    font-size: 0.7rem;
+  }
+
+  .sizeTag {
+    padding: 8px 10px;
+    min-width: 40px;
+    font-size: 0.7rem;
+  }
+}

@@ -15,6 +15,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
+  const [activeImage, setActiveImage] = useState(0);
 
   const items = useSelector(selectCatalogItems);
   const favorites = useSelector(selectFavorites);
@@ -41,7 +42,6 @@ const ProductPage = () => {
       return;
     }
 
-    // No size requirement - can add directly
     if (isInCart) {
       dispatch(removeFromFavorites(product));
       toast("REMOVED FROM SHOPPING BAG", {
@@ -72,7 +72,22 @@ const ProductPage = () => {
   const handleBuyNow = () => {
     if (!product) return;
 
-    // No size requirement for buy now either
+    if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+      toast("PLEASE SELECT A SIZE", {
+        icon: "⚠️",
+        style: {
+          background: "#000",
+          color: "#fff",
+          borderRadius: "0",
+          fontSize: "11px",
+          letterSpacing: "1px",
+          textTransform: "uppercase",
+          border: "1px solid #ff4444",
+        },
+      });
+      return;
+    }
+
     if (!isInCart) {
       dispatch(addToFavorites(product));
     }
@@ -82,16 +97,6 @@ const ProductPage = () => {
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
-    toast(`SIZE ${size} SELECTED`, {
-      style: {
-        background: "#000",
-        color: "#fff",
-        borderRadius: "0",
-        fontSize: "11px",
-        letterSpacing: "1px",
-        textTransform: "uppercase",
-      },
-    });
   };
 
   // Check if product has sizes but none selected
@@ -116,14 +121,13 @@ const ProductPage = () => {
 
   return (
     <div className={css.productPage}>
-      <div className={css.breadcrumb}>
-        <button onClick={() => navigate(-1)} className={css.backButton}>
-          ← BACK
+      {/* Mobile Header - Sticky */}
+      <div className={css.mobileHeader}>
+        <button onClick={() => navigate(-1)} className={css.mobileBackButton}>
+          ←
         </button>
-        <span className={css.breadcrumbSeparator}>/</span>
-        <span className={css.breadcrumbText}>
-          {product.category.toUpperCase()}
-        </span>
+        <span className={css.mobileTitle}>PRODUCT</span>
+        <div className={css.mobileSpacer}></div>
       </div>
 
       <div className={css.productContainer}>
@@ -168,12 +172,7 @@ const ProductPage = () => {
 
           {hasSizes && (
             <div className={css.sizeSection}>
-              <h3 className={css.sectionTitle}>
-                SIZE{" "}
-                {!selectedSize && (
-                  <span className={css.optionalText}>(OPTIONAL)</span>
-                )}
-              </h3>
+              <h3 className={css.sectionTitle}>SIZE</h3>
               <div className={css.sizeList}>
                 {product.sizes.map((size, index) => (
                   <button
@@ -203,21 +202,27 @@ const ProductPage = () => {
             </span>
           </div>
 
-          <div className={css.actionButtons}>
-            <button
-              className={`${css.addToCartBtn} ${isInCart ? css.inCart : ""}`}
-              onClick={handleAddToCart}
-              disabled={!product.available}
-            >
-              {isInCart ? "REMOVE FROM SHOPPING BAG" : "ADD TO SHOPPING BAG"}
-            </button>
-            <button
-              className={css.buyNowBtn}
-              onClick={handleBuyNow}
-              disabled={!product.available}
-            >
-              BUY NOW
-            </button>
+          {/* Sticky Action Buttons for Mobile */}
+          <div className={css.mobileStickyActions}>
+            <div className={css.actionButtons}>
+              <button
+                className={`${css.addToCartBtn} ${isInCart ? css.inCart : ""} ${
+                  sizeNotSelected ? css.sizeRequiredBtn : ""
+                }`}
+                onClick={handleAddToCart}
+                disabled={!product.available}
+              >
+                {isInCart ? "REMOVE FROM BAG" : "ADD TO BAG"}
+                {sizeNotSelected && " - SELECT SIZE"}
+              </button>
+              <button
+                className={css.buyNowBtn}
+                onClick={handleBuyNow}
+                disabled={!product.available || sizeNotSelected}
+              >
+                BUY NOW
+              </button>
+            </div>
           </div>
 
           <div className={css.descriptionSection}>
