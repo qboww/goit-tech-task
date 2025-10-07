@@ -6,6 +6,7 @@ const Home = lazy(() => import("../pages/HomePage/HomePage"));
 const Catalog = lazy(() => import("../pages/CatalogPage/CatalogPage"));
 const Cart = lazy(() => import("../pages/CartPage/CartPage"));
 const ProductPage = lazy(() => import("../pages/ProductPage/ProductPage"));
+const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy/PrivacyPolicy"));
 const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

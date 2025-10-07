@@ -82,7 +82,7 @@ const Footer = () => {
               <span>UNITED STATES | $</span>
             </div>
             <div className={css.legalLinks}>
-              <a href="/privacy">PRIVACY POLICY</a>
+              <a href="/privacy-policy">PRIVACY POLICY</a>
               <a href="/terms">TERMS & CONDITIONS</a>
               <a href="/cookies">COOKIES</a>
               <a href="/accessibility">ACCESSIBILITY</a>
