@@ -10,14 +10,19 @@ import css from "./Card.module.css";
 const Card = ({ item }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-  const isFavorite = favorites.some((favorite) => favorite.id === item?.id);
+  const isInCart = favorites.some((favorite) => favorite.id === item?.id);
 
-  const handleViewDetailsClick = () => {
-    if (isFavorite) {
+  const handleCartClick = () => {
+    if (isInCart) {
       dispatch(removeFromFavorites(item));
     } else {
       dispatch(addToFavorites(item));
     }
+  };
+
+  const handleViewDetails = () => {
+    // No functionality for now - can be used later for modal or product page
+    console.log("View details for:", item.name);
   };
 
   if (!item) {
@@ -36,6 +41,16 @@ const Card = ({ item }) => {
           src={item.img || "/placeholder-image.jpg"} 
           alt={item.name || "Product image"} 
         />
+        <button 
+          className={clsx(css.cartIcon, {
+            [css.inCart]: isInCart
+          })}
+          onClick={handleCartClick}
+          disabled={!item.available}
+          title={isInCart ? "Remove from cart" : "Add to cart"}
+        >
+          {isInCart ? "✕" : "🛒"}
+        </button>
       </div>
 
       <div className={css.dataContainer}>
@@ -63,15 +78,15 @@ const Card = ({ item }) => {
         </div>
       </div>
 
-      <button 
-        className={clsx(css.btn, {
-          [css.favoriteBtn]: isFavorite
-        })}
-        onClick={handleViewDetailsClick}
-        disabled={!item.available}
-      >
-        {isFavorite ? "Remove from Cart" : "Add to Cart"}
-      </button>
+      <div className={css.buttonContainer}>
+        <button 
+          className={css.viewDetailsBtn}
+          onClick={handleViewDetails}
+          disabled={!item.available}
+        >
+          View Details
+        </button>
+      </div>
     </div>
   );
 };
