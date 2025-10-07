@@ -131,13 +131,11 @@
 
 .divider {
   height: 2px;
-  background: #bdc3c7;
-  margin: 16px 0;
+  background: #bdc3c7
 }
 
 /* Shipping Info */
 .shippingInfo {
-  margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid #ecf0f1;
 }
