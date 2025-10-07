@@ -1,30 +1,18 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { selectFavorites } from "../../redux/catalog/catalogSelectors";
 import Catalog from "../../components/Catalog/Catalog";
 import toast, { Toaster } from 'react-hot-toast';
 import css from "./CartPage.module.css";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const favorites = useSelector(selectFavorites);
 
-  // Calculate totals
   const subtotal = favorites.reduce((sum, item) => sum + (item.price || 0), 0);
   const shipping = subtotal > 50 ? 0 : 9.99;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
-
-  const currentDate = new Date();
-  const estimatedDelivery = new Date(currentDate);
-  estimatedDelivery.setDate(currentDate.getDate() + 3);
-
-  const formatDate = (date) => {
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   const handleCheckout = () => {
     const purchasePromise = new Promise((resolve, reject) => {
@@ -40,181 +28,158 @@ const CartPage = () => {
     toast.promise(
       purchasePromise,
       {
-        loading: 'Processing your order...',
+        loading: 'PROCESSING YOUR ORDER...',
         success: () => {
           const orderNumber = `ORD-${Date.now()}`;
           return (
             <div>
-              <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
-                🎉 Order Confirmed!
+              <div style={{ fontWeight: 'bold', marginBottom: '8px', textTransform: 'uppercase' }}>
+                ORDER CONFIRMED
               </div>
-              <div style={{ fontSize: '14px' }}>
-                Order #: {orderNumber}
+              <div style={{ fontSize: '12px', letterSpacing: '0.5px' }}>
+                ORDER #: {orderNumber}
                 <br />
-                Total: ${total.toFixed(2)}
-                <br />
-                Estimated delivery: {formatDate(estimatedDelivery)}
+                TOTAL: ${total.toFixed(2)}
               </div>
             </div>
           );
         },
-        error: (error) => `Purchase failed: ${error.message}`
+        error: (error) => `PURCHASE FAILED: ${error.message.toUpperCase()}`
       },
       {
         style: {
-          minWidth: '350px',
-          borderRadius: '10px',
-          background: '#363636',
+          minWidth: '300px',
+          borderRadius: '0',
+          background: '#000',
           color: '#fff',
+          fontSize: '11px',
+          letterSpacing: '1px',
         },
         success: {
-          duration: 6000,
-          icon: '✅',
+          duration: 5000,
         },
         error: {
           duration: 4000,
-          icon: '❌',
         },
       }
     );
-
-    toast.success('🛒 Items reserved for 30 minutes', {
-      duration: 3000,
-      position: 'bottom-left',
-    });
   };
 
   const handleAddPromoCode = () => {
-    toast('🎁 Promo code applied! $10 discount', {
-      icon: '✅',
+    toast('PROMO CODE APPLIED', {
       duration: 3000,
       position: 'top-right',
+      style: {
+        background: '#000',
+        color: '#fff',
+        borderRadius: '0',
+        fontSize: '11px',
+        letterSpacing: '1px',
+      },
     });
   };
 
-  const handleFreeShippingNotice = () => {
-    if (subtotal < 50) {
-      toast.loading(`Add $${(50 - subtotal).toFixed(2)} more for FREE shipping!`, {
-        duration: 4000,
-        position: 'bottom-center',
-        style: {
-          background: '#3498db',
-          color: 'white',
-        },
-      });
-    }
-  };
-
   return (
-    <div className="container">
-      {/* Toast Container */}
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-        gutter={8}
-        containerClassName=""
-        containerStyle={{}}
-        toastOptions={{
-          className: '',
-          duration: 5000,
-          style: {
-            background: '#363636',
-            color: '#fff',
-          },
-          success: {
-            duration: 4000,
-            theme: {
-              primary: 'green',
-              secondary: 'black',
+    <div className="container"> {/* Add container wrapper here */}
+      <div className={css.cartPage}>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            style: {
+              background: '#000',
+              color: '#fff',
+              borderRadius: '0',
+              fontSize: '11px',
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
             },
-          },
-        }}
-      />
+          }}
+        />
 
-      {favorites.length === 0 ? (
-        <div className={css.emptyCart}>
-          <h2 className={css.emptyTitle}>Your cart is empty</h2>
-          <p className={css.emptyText}>Start shopping to add items to your cart</p>
-          <button className={css.shopButton}>Continue Shopping</button>
-        </div>
-      ) : (
-        <div className={css.cartContainer}>
-          <div className={css.cartHeader}>
-            <h1 className={css.title}>Shopping Cart</h1>
-            <p className={css.itemCount}>{favorites.length} {favorites.length === 1 ? 'item' : 'items'}</p>
+        {favorites.length === 0 ? (
+          <div className={css.emptyCart}>
+            <h2 className={css.emptyTitle}>SHOPPING BAG (0)</h2>
+            <p className={css.emptyText}>YOUR SHOPPING BAG IS EMPTY</p>
+            <button 
+              className={css.shopButton}
+              onClick={() => navigate('/catalog')}
+            >
+              CONTINUE SHOPPING
+            </button>
           </div>
-
-          <div className={css.cartContent}>
-            <div className={css.itemsSection}>
-              <h2 className={css.sectionTitle}>Your Items</h2>
-              <Catalog items={favorites} />
+        ) : (
+          <div className={css.cartContainer}>
+            <div className={css.cartHeader}>
+              <h1 className={css.title}>SHOPPING BAG ({favorites.length})</h1>
             </div>
 
-            <div className={css.orderSummary}>
-              <div className={css.summaryCard}>
-                <h3 className={css.summaryTitle}>Order Summary</h3>
-                
-                <div className={css.summaryRow}>
-                  <span>Subtotal ({favorites.length} items)</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-                
-                <div className={css.summaryRow}>
-                  <span>Shipping</span>
-                  <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
-                </div>
-                
-                <div className={css.summaryRow}>
-                  <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
-                </div>
-                
-                <div className={css.divider}></div>
-                
-                <div className={`${css.summaryRow} ${css.total}`}>
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
-                </div>
+            <div className={css.cartContent}>
+              <div className={css.itemsSection}>
+                <Catalog items={favorites} />
+              </div>
 
-                <div className={css.shippingInfo}>
-                  <h4>Delivery Information</h4>
-                  <p>Order date: {formatDate(currentDate)}</p>
-                  <p>Estimated delivery: {formatDate(estimatedDelivery)}</p>
+              <div className={css.orderSummary}>
+                <div className={css.summaryCard}>
+                  <h3 className={css.summaryTitle}>ORDER SUMMARY</h3>
+                  
+                  <div className={css.summaryRow}>
+                    <span>SUBTOTAL</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className={css.summaryRow}>
+                    <span>SHIPPING</span>
+                    <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+                  </div>
+                  
+                  <div className={css.summaryRow}>
+                    <span>TAX</span>
+                    <span>${tax.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className={css.divider}></div>
+                  
+                  <div className={`${css.summaryRow} ${css.total}`}>
+                    <span>TOTAL</span>
+                    <span>${total.toFixed(2)}</span>
+                  </div>
+
                   {subtotal < 50 && (
-                    <p 
-                      className={css.freeShippingNote}
-                      onClick={handleFreeShippingNotice}
-                      style={{cursor: 'pointer'}}
-                    >
-                      Add ${(50 - subtotal).toFixed(2)} more for FREE shipping!
-                    </p>
+                    <div className={css.shippingNote}>
+                      ADD ${(50 - subtotal).toFixed(2)} MORE FOR FREE SHIPPING
+                    </div>
                   )}
-                </div>
 
-                <button 
-                  className={css.checkoutButton}
-                  onClick={handleCheckout}
-                >
-                  Proceed to Checkout
-                </button>
+                  <button 
+                    className={css.checkoutButton}
+                    onClick={handleCheckout}
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
 
-                <div className={css.securityNote}>
-                  <span>🔒 Secure checkout</span>
-                  <span>✓ 30-day return policy</span>
-                </div>
-              </div>
-
-              <div className={css.promoSection}>
-                <h4>Have a promo code?</h4>
-                <div className={css.promoInput}>
-                  <input type="text" placeholder="Enter code" />
-                  <button onClick={handleAddPromoCode}>Apply</button>
+                  <div className={css.promoSection}>
+                    <h4>PROMOTIONAL CODE</h4>
+                    <div className={css.promoInput}>
+                      <input 
+                        type="text" 
+                        placeholder="ENTER CODE" 
+                        className={css.promoField}
+                      />
+                      <button 
+                        className={css.promoButton}
+                        onClick={handleAddPromoCode}
+                      >
+                        APPLY
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

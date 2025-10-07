@@ -33,25 +33,40 @@ const CatalogPage = () => {
   }
 
   if (hasError) {
-    return <p>Something went wrong. Please try again later.</p>;
+    return (
+      <div className="container">
+        <div className={css.errorContainer}>
+          <p className={css.errorText}>SOMETHING WENT WRONG. PLEASE TRY AGAIN LATER.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="container">
-      {displayedItems.length > 0 ? (
-        <>
-          <Catalog items={displayedItems} />
-          {!allItemsLoaded && (
-            <div className={css.btnContainer}>
-              <button className={css.loadMore} onClick={loadMore}>
-                Load more
-              </button>
-            </div>
-          )}
-        </>
-      ) : (
-        <p className={css.notFound}>No cars found...</p>
-      )}
+    <div className="container"> {/* Add container here */}
+      <div className={css.catalogPage}>
+        <div className={css.catalogHeader}>
+          <h1 className={css.pageTitle}>PRODUCTS</h1>
+          <p className={css.pageSubtitle}>{items.length} ITEMS</p>
+        </div>
+
+        {displayedItems.length > 0 ? (
+          <>
+            <Catalog items={displayedItems} />
+            {!allItemsLoaded && (
+              <div className={css.loadMoreContainer}>
+                <button className={css.loadMore} onClick={loadMore}>
+                  LOAD MORE
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className={css.emptyCatalog}>
+            <p className={css.notFound}>NO PRODUCTS FOUND</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,38 +1,86 @@
-.loadMore {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
-  color: #3470ff;
-  border: none;
-  background: none;
-  cursor: pointer;
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.catalogPage {
+  padding: 0;
+}
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.catalogHeader {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 40px 0 20px 0;
+  margin-bottom: 40px;
+}
+
+.pageTitle {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 10px 0;
+}
+
+.pageSubtitle {
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.loadMoreContainer {
+  text-align: center;
+  padding: 60px 0;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 40px;
+}
+
+.loadMore {
+  padding: 15px 40px;
+  background: white;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .loadMore:hover {
-  color: #0b44cd;
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #000;
+  color: white;
 }
 
-.btnContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
+.emptyCatalog {
+  text-align: center;
+  padding: 100px 20px;
 }
 
 .notFound {
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.errorText {
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .catalogHeader {
+    padding: 20px 0 15px 0;
+    margin-bottom: 30px;
+  }
+  
+  .pageTitle {
+    font-size: 1.5rem;
+  }
 }

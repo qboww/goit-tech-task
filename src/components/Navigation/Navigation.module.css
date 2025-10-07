@@ -1,75 +1,214 @@
 .header {
-  border-bottom: 1px solid rgba(128, 128, 128, 0.205);
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 1500;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-a {
-  color: black;
-  text-decoration: none;
-  transition: color 0.3s, transform 0.3s;
+/* Top Bar */
+.topBar {
+  background: #000;
+  color: white;
+  padding: 8px 0;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-a:hover {
-  color: #3470ff;
-  transform: scale(1.05);
-}
-
-.navContainer {
-  max-width: 1440px;
-  padding: 16px 32px;
-  margin: 0 auto;
+.topBarContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.topBarLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.topBarLinks a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-size: 0.7rem;
+}
+
+.topBarLinks a:hover {
+  opacity: 0.7;
+}
+
+/* Main Navigation */
+.mainNav {
+  padding: 0;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  flex: 1;
+}
+
 .logoLink {
-  font-size: 20px;
-  font-weight: bold;
-  color: #3470ff;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
 }
 
 .navLinks {
   display: flex;
-  gap: 8px;
+  gap: 40px;
+  flex: 2;
+  justify-content: center;
 }
 
-.navLinks a {
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 4px;
+.navLink {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 25px 0;
+  position: relative;
+  transition: opacity 0.3s ease;
 }
 
-.navLinks a:hover {
-  background-color: #f0f0f0;
+.navLink:hover {
+  opacity: 0.7;
 }
 
 .activeLink {
-  color: #fff;
-  background-color: #3470ff;
-  border-radius: 4px;
+  position: relative;
 }
 
-@media screen and (min-width: 768px) {
-  .navContainer {
-    padding: 16px;
-  }
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #000;
+}
 
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.searchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 25px 5px 0;
+  font-size: 0.8rem;
+  width: 150px;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.searchInput:focus {
+  border-bottom-color: #000;
+}
+
+.searchInput::placeholder {
+  color: #999;
+  letter-spacing: 1px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.cartLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.cartLink:hover {
+  opacity: 0.7;
+}
+
+.cartIcon {
+  font-size: 1.1rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
   .navLinks {
-    gap: 16px;
+    gap: 25px;
   }
-
-  .logoLink {
-    font-size: 24px;
+  
+  .navLink {
+    font-size: 0.75rem;
+  }
+  
+  .searchInput {
+    width: 120px;
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media (max-width: 768px) {
+  .topBar {
+    display: none;
+  }
+  
   .navContainer {
-    padding: 16px;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px 0;
+  }
+  
+  .logo {
+    flex: none;
+  }
+  
+  .navLinks {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 20px;
+  }
+  
+  .navActions {
+    flex: none;
+  }
+  
+  .searchInput {
+    width: 100px;
+  }
+  
+  .cartText {
+    display: none;
   }
 }

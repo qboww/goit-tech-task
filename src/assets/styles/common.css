@@ -27,16 +27,35 @@
   --second-family: "Inter", sans-serif;
 }
 
-body {
-  font-family: var(--font-family);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: #000;
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Zara-inspired container with proper breakpoints */
 .container {
-  max-width: 320px;
+  max-width: 100%;
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -47,10 +66,83 @@ body {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
-    padding-left: 128px;
-    padding-right: 128px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
+}
+
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+
+/* Utility classes for Zara-style layouts */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  background: #000;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #000;
+  color: #fff;
 }

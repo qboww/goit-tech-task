@@ -1,0 +1,390 @@
+.productPage {
+  padding: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 0 20px 0;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 40px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  padding: 0;
+}
+
+.backButton:hover {
+  opacity: 0.7;
+}
+
+.breadcrumbSeparator {
+  color: #999;
+}
+
+.breadcrumbText {
+  color: #666;
+}
+
+.productContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.imageSection {
+  position: sticky;
+  top: 100px;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.soldOutOverlay {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.detailsSection {
+  padding: 20px 0;
+}
+
+.productHeader {
+  margin-bottom: 20px;
+}
+
+.productName {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.productReference {
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 30px 0;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+.colorSection,
+.sizeSection,
+.descriptionSection {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.colorList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.colorTag {
+  padding: 12px 20px;
+  border: 1px solid #e5e5e5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  min-width: 80px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.sizeList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.sizeTag {
+  padding: 12px 16px;
+  border: 1px solid #e5e5e5;
+  background: white;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 50px;
+  text-align: center;
+}
+
+.sizeTag:hover {
+  border-color: #000;
+}
+
+.sizeSelected {
+  border-color: #000;
+  background: #000;
+  color: white;
+}
+
+.sizeGuideLink {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+  padding-bottom: 1px;
+  transition: opacity 0.3s ease;
+}
+
+.sizeGuideLink:hover {
+  opacity: 0.7;
+}
+
+.availability {
+  margin-bottom: 30px;
+}
+
+.status {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.available {
+  background: #f8f8f8;
+  color: #000;
+}
+
+.unavailable {
+  background: #f8f8f8;
+  color: #999;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.addToCartBtn,
+.buyNowBtn {
+  padding: 15px 30px;
+  border: 1px solid #000;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addToCartBtn {
+  background: #000;
+  color: white;
+}
+
+.addToCartBtn:hover:not(:disabled) {
+  background: white;
+  color: #000;
+}
+
+.addToCartBtn.inCart {
+  background: white;
+  color: #000;
+}
+
+.addToCartBtn.inCart:hover:not(:disabled) {
+  background: #000;
+  color: white;
+}
+
+.buyNowBtn {
+  background: white;
+  color: #000;
+}
+
+.buyNowBtn:hover:not(:disabled) {
+  background: #000;
+  color: white;
+}
+
+.addToCartBtn:disabled,
+.buyNowBtn:disabled {
+  background: #f8f8f8;
+  color: #999;
+  border-color: #e5e5e5;
+  cursor: not-allowed;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.productDetails {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.detailItem:last-child {
+  border-bottom: none;
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.detailValue {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.featuresSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.featureTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.featureText {
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.notFound {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.notFound h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+
+@media (max-width: 1024px) {
+  .productContainer {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .imageSection {
+    position: static;
+  }
+  
+  .breadcrumb {
+    padding: 20px 0 15px 0;
+    margin-bottom: 30px;
+  }
+  
+  .productName {
+    font-size: 1.2rem;
+  }
+  
+  .actionButtons {
+    margin-bottom: 30px;
+  }
+  
+  .colorSection,
+  .sizeSection,
+  .descriptionSection {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+  }
+}
+

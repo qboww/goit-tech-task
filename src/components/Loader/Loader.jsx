@@ -8,8 +8,8 @@ const Loader = () => {
     <div className={css.loaderWrapper}>
       <RotatingLines
         visible={true}
-        height="50"
-        width="50"
+        height="25"
+        width="25"
         color="grey"
         strokeColor="grey"
         strokeWidth="5"

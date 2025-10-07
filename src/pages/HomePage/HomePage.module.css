@@ -1,95 +1,340 @@
-.heroSection {
+.homeContainer {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Hero Banner */
+.heroBanner {
   position: relative;
-  background-image: url("https://ftp.goit.study/img/cars-test-task/volvo_xc90.jpeg");
-  background-size: cover;
-  background-position: center;
-  height: 60vh; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 10px; 
+  height: 80vh;
+  min-height: 600px;
+  margin-bottom: 36px;
   overflow: hidden;
-  margin-top: 50px;
+  background: #000;
 }
 
-.heroSection::before {
-  content: "";
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.heroContent {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 2;
 }
 
-.content {
-  position: relative;
-  z-index: 1;
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.heroButton {
+  display: inline-block;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.heroButton:hover {
+  background: transparent;
   color: white;
 }
 
-.content h1 {
-  font-size: 36px;
+/* Categories Grid */
+.categoriesSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0;
+}
+
+.categoryCard {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.categoryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.categoryCard:hover .categoryImage {
+  transform: scale(1.05);
+}
+
+.categoryOverlay {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: white;
+}
+
+.categoryOverlay h3 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.categoryLink {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  border-bottom: 1px solid white;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.categoryLink:hover {
+  opacity: 0.7;
+}
+
+/* Trending Section */
+.trendingSection {
+  padding: 80px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+}
+
+.sectionHeader h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.viewAllLink {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.viewAllLink:hover {
+  opacity: 0.7;
+}
+
+.trendingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.trendingItem {
+  text-align: center;
+}
+
+.trendingImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
   margin-bottom: 20px;
 }
 
-.content p {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.5);
+.trendingInfo h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.ctaButton {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #3470ff;
+.trendingInfo p {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* Sale Banner */
+.saleBanner {
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+  background: #000;
+  margin: 80px 0;
+}
+
+.saleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.saleContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.ctaButton:hover {
-  background-color: #0b44cd;
-}
-
-.featuresSection {
   text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 150px;
+  z-index: 2;
 }
 
-.featuresSection h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
+.saleContent h2 {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
-.features {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.saleContent p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.saleButton {
+  display: inline-block;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.saleButton:hover {
+  background: transparent;
+  color: white;
+}
+
+/* Features */
+.featuresSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid #e5e5e5;
 }
 
 .feature {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 5px;
+  text-align: center;
 }
 
-.feature h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
+.featureIcon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.feature h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .feature p {
-  font-size: 16px;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }
 
-@media screen and (min-width: 768px) {
-  .features {
-    flex-direction: row;
-    justify-content: space-between;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .categoriesSection {
+    grid-template-columns: 1fr;
+  }
+  
+  .categoryCard {
+    height: 400px;
+  }
+  
+  .trendingGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .featuresSection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroContent {
+    left: 5%;
+    right: 5%;
+    text-align: center;
+  }
+  
+  .categoryOverlay {
+    left: 20px;
+    bottom: 20px;
+  }
+  
+  .trendingSection {
+    padding: 60px 20px;
+  }
+  
+  .saleContent h2 {
+    font-size: 2rem;
+  }
+  
+  .featuresSection {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px 20px;
   }
 }

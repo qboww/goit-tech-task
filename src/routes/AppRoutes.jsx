@@ -5,6 +5,7 @@ import Loader from "../components/Loader/Loader";
 const Home = lazy(() => import("../pages/HomePage/HomePage"));
 const Catalog = lazy(() => import("../pages/CatalogPage/CatalogPage"));
 const Cart = lazy(() => import("../pages/CartPage/CartPage"));
+const ProductPage = lazy(() => import("../pages/ProductPage/ProductPage"));
 const NotFound = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 const AppRoutes = () => {
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
