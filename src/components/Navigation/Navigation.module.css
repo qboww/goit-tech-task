@@ -388,3 +388,9 @@
     right: -6px;
   }
 }
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  color: black;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import clsx from "clsx";
+import { Cat } from "lucide-react"; 
 import css from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -29,12 +30,12 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-      
+
       <div className={css.mainNav}>
         <div className="container">
           <div className={css.navContainer}>
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className={css.mobileMenuButton}
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
@@ -47,23 +48,31 @@ const Navigation = () => {
             </button>
 
             <div className={css.logo}>
-              <NavLink to="/" className={css.logoLink} onClick={closeMobileMenu}>
-                DI
+              <NavLink
+                to="/"
+                className={css.logoLink}
+                onClick={closeMobileMenu}
+              >
+                <Cat className={css.logoIcon} />
               </NavLink>
             </div>
-            
+
             {/* Desktop Navigation */}
             <nav className={css.navLinks}>
               <NavLink
                 to="/"
-                className={({ isActive }) => clsx(css.navLink, { [css.activeLink]: isActive })}
+                className={({ isActive }) =>
+                  clsx(css.navLink, { [css.activeLink]: isActive })
+                }
                 onClick={closeMobileMenu}
               >
                 HOME
               </NavLink>
               <NavLink
                 to="/catalog"
-                className={({ isActive }) => clsx(css.navLink, { [css.activeLink]: isActive })}
+                className={({ isActive }) =>
+                  clsx(css.navLink, { [css.activeLink]: isActive })
+                }
                 onClick={closeMobileMenu}
               >
                 ALL PRODUCTS
@@ -73,16 +82,16 @@ const Navigation = () => {
             <div className={css.navActions}>
               {/* Search - Hidden on mobile */}
               <div className={css.searchBox}>
-                <input 
-                  type="text" 
-                  placeholder="SEARCH..." 
+                <input
+                  type="text"
+                  placeholder="SEARCH..."
                   className={css.searchInput}
                 />
               </div>
-              
+
               {/* Cart with icon only on mobile */}
-              <NavLink 
-                to="/cart" 
+              <NavLink
+                to="/cart"
                 className={css.cartLink}
                 onClick={closeMobileMenu}
               >
@@ -92,30 +101,42 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Overlay */}
-          <div className={clsx(css.mobileMenu, { [css.mobileMenuOpen]: isMobileMenuOpen })}>
+          <div
+            className={clsx(css.mobileMenu, {
+              [css.mobileMenuOpen]: isMobileMenuOpen,
+            })}
+          >
             <div className={css.mobileMenuContent}>
               <nav className={css.mobileNavLinks}>
                 <NavLink
                   to="/"
-                  className={({ isActive }) => clsx(css.mobileNavLink, { [css.mobileActiveLink]: isActive })}
+                  className={({ isActive }) =>
+                    clsx(css.mobileNavLink, {
+                      [css.mobileActiveLink]: isActive,
+                    })
+                  }
                   onClick={closeMobileMenu}
                 >
                   HOME
                 </NavLink>
                 <NavLink
                   to="/catalog"
-                  className={({ isActive }) => clsx(css.mobileNavLink, { [css.mobileActiveLink]: isActive })}
+                  className={({ isActive }) =>
+                    clsx(css.mobileNavLink, {
+                      [css.mobileActiveLink]: isActive,
+                    })
+                  }
                   onClick={closeMobileMenu}
                 >
                   ALL PRODUCTS
                 </NavLink>
               </nav>
-              
+
               {/* Mobile Search */}
               <div className={css.mobileSearch}>
-                <input 
-                  type="text" 
-                  placeholder="SEARCH..." 
+                <input
+                  type="text"
+                  placeholder="SEARCH..."
                   className={css.mobileSearchInput}
                 />
               </div>
@@ -124,7 +145,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Backdrop */}
           {isMobileMenuOpen && (
-            <div 
+            <div
               className={css.mobileMenuBackdrop}
               onClick={closeMobileMenu}
             ></div>
